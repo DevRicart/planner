@@ -28,4 +28,32 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index');
     }
+
+    public function destroy($id) {
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect()->route('tasks.index')
+                         ->with('success', 'Tarefa excluída com sucesso!');
+    }
+
+    public function edit($id) {
+        $task = Task::findOrFail($id);
+
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, $id) {
+        $task = Task::findOrFail($id);
+
+        $task->update([
+            'titulo' => $request->titulo,
+            'data_limite' => $request->data_limite,
+            'descricao' => $request->descricao,
+            'prioridade' => $request->prioridade,
+        ]);
+
+        return redirect()->route('tasks.index')
+                         ->with('success', 'Tarefa editada com sucesso!');
+    }
 }
