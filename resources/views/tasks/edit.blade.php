@@ -7,7 +7,7 @@
     @method('PUT')
 
     <label for="titulo">Tarefa:</label><br>
-    <input type="text" name="titulo" placeholder="Título"><br><br>
+    <input type="text" name="titulo" value="{{ $task->titulo }}"><br><br>
     <label for="prioridade">Prioridade:</label><br>
     <select name="prioridade" id="">
         @foreach(\App\Models\Task::PRIORIDADES as $valor => $label)
@@ -17,9 +17,9 @@
         @endforeach
     </select><br><br>
     <label for="data_limite">Data:</label><br>
-    <input type="date" name="data_limite"><br><br>
+    <input type="date" name="data_limite" value="{{ $task->data_limite }}"><br><br>
     <label for="descricao">Descrição:</label><br>
-    <textarea name="descricao"></textarea><br><br>
+    <textarea name="descricao">{{ $task->descricao }}</textarea><br><br>
 
     <button type="submit">Salvar</button>
 </form>

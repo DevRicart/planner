@@ -15,7 +15,8 @@
 @endif
 <div class="grid grid-cols-3">
     @foreach($tasks as $task)
-        <div class="w-52 border border-black rounded p-5 mb-2">
+        <div style="-webkit-box-shadow: 5px 5px 14px -3px #000000;  box-shadow: 5px 5px 14px -3px #000000;"
+        class="w-52 border border-black rounded p-5 mb-2 bg-white">
             <div class="flex justify-end gap-2">
                 <a href="{{ route('tasks.edit', $task->id) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -42,13 +43,14 @@
                     <div>{{ $task->prioridade }}</div>
                 </div>
             </div>
-            <div class="">
+            <div>
                 {{ $task->descricao}}
             </div>
             <div class="flex justify-between items-center mt-3">
-                <div>{{ $task->status }}</div>
-                <div>
-                    <a href="">
+                @php $status = $task->getStatusColor(); @endphp
+                <div class="p-1 border border-black rounded-md {{ $status }}">{{ $task->status }}</div>
+                <div class="flex items-center gap-2">
+                    <a href="" title="Completar tarefa">
                         <div class="bg-green-500 p-2 rounded-full inline-flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -59,6 +61,18 @@
                                 <path stroke-linecap="round"
                                     stroke-linejoin="round"
                                     d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="" title="Cancelar tarefa">
+                        <div class="bg-red-500 p-2 rounded-full inline-flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="white"
+                                class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>
                         </div>
                     </a>
