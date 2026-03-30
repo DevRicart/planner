@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 
 Route::get('/', [TaskController::class, 'index']);
+Route::patch('/tasks/{id}/confirm', [TaskController::class, 'confirmTask'])
+    ->name('tasks.confirmTask');
+Route::patch('/tasks/{id}/cancel', [TaskController::class, 'cancelTask'])
+    ->name('tasks.cancelTask');
 Route::resource('tasks', TaskController::class);
 
 // Route::get('/dashboard', function () {

@@ -56,4 +56,30 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')
                          ->with('success', 'Tarefa editada com sucesso!');
     }
+
+    public function confirmTask($id) {
+        $task = Task::findOrFail($id);
+
+        if($task->status != 'cancelada') {
+            $task->update([
+                'status' => 'concluida'
+            ]);
+        }
+            
+
+        return redirect()->route('tasks.index');
+    }
+
+    public function cancelTask($id) {
+        $task = Task::findOrFail($id);
+
+        if($task->status != 'concluida') {
+            $task->update([
+            'status' => 'cancelada'
+        ]);
+        }
+        
+
+        return redirect()->route('tasks.index');
+    }
 }
