@@ -14,7 +14,7 @@
                 @csrf
 
                 <label for="titulo">Tarefa:</label><br>
-                <input type="text" name="titulo" placeholder="Nova programação"><br><br>
+                <input type="text" name="titulo" placeholder="Nova programação" maxlength="24"><br><br>
                 <label for="prioridade">Prioridade:</label><br>
                 <select name="prioridade" id="">
                     @foreach(\App\Models\Task::PRIORIDADES as $valor => $label)

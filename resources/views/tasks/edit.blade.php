@@ -15,7 +15,7 @@
                 @method('PUT')
 
                 <label for="titulo">Tarefa:</label><br>
-                <input type="text" name="titulo" value="{{ $task->titulo }}"><br><br>
+                <input type="text" name="titulo" value="{{ $task->titulo }}" maxlength="24"><br><br>
                 <label for="prioridade">Prioridade:</label><br>
                 <select name="prioridade" id="">
                     @foreach(\App\Models\Task::PRIORIDADES as $valor => $label)

@@ -13,11 +13,12 @@
 @if($tasks->isEmpty())
     <h3 class="text-2xl">Não há tarefas registradas!</h3>
 @endif
-<div class="grid grid-cols-3">
+<div class="grid grid-cols-3 gap-10">
     @foreach($tasks as $task)
         <div style="-webkit-box-shadow: 5px 5px 14px -3px #000000;  box-shadow: 5px 5px 14px -3px #000000;"
-        class="w-52 border border-black rounded p-5 mb-2 bg-white">
+        class="w-60 h-72 border border-black rounded px-5 py-3 mb-2 bg-white flex flex-col relative ">
             <div class="flex justify-end gap-2">
+                <h4 class="text-xl">{{ $task->titulo }}</h4>
                 <a href="{{ route('tasks.edit', $task->id) }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
@@ -36,7 +37,7 @@
             </div>
             <div class="mt-2 mb-2">
                 <div class="mb-1">
-                    <h4 class="text-xl">{{ $task->titulo }}</h4>
+
                 </div>
                 <div class="flex justify-between">
                     <div>{{ $task->data_limite }}</div>
@@ -46,40 +47,42 @@
             <div>
                 <p class="break-words">{{ $task->descricao}}</p>
             </div>
-            <div class="flex justify-between items-center mt-3">
+            <div class="flex justify-between items-center mt-3 absolute bottom-5 left-0 right-0 mx-5">
                 @php $status = $task->getStatusColor(); @endphp
-                <div class="p-1 border border-black rounded-md {{ $status }}">{{ $task->status }}</div>
-                <div class="flex items-center gap-2">
-                    <form action="{{ route('tasks.confirmTask', $task->id) }}" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <button class="bg-green-500 p-2 rounded-full inline-flex items-center justify-center">
+                <div class="flex justify-between w-full">
+                    <div class="p-1 border border-black rounded-md {{ $status }}">{{ $task->status }}</div>
+                    <div class="flex gap-2">
+                        <form action="{{ route('tasks.confirmTask', $task->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button class="bg-green-500 p-2 rounded-full inline-flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="white"
+                                        class="w-5 h-5">
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="m4.5 12.75 6 6 9-13.5" />
+                                    </svg>
+                            </button>
+                        </form>
+                        <form action="{{ route('tasks.cancelTask', $task->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button class="bg-red-500 p-2 rounded-full inline-flex items-center justify-center" onclick="return confirm('Tem certeza que deseja cancelar essa tarefa?')">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="2"
                                     stroke="white"
                                     class="w-5 h-5">
-                                    <path stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="m4.5 12.75 6 6 9-13.5" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
-                        </button>
-                    </form>
-                    <form action="{{ route('tasks.cancelTask', $task->id) }}" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <button class="bg-red-500 p-2 rounded-full inline-flex items-center justify-center" onclick="return confirm('Tem certeza que deseja cancelar essa tarefa?')">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="white"
-                                class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </form>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
