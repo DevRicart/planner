@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 <x-app-layout>
 <div>
     <h1 class="text-4xl">Minhas Tarefas</h1>

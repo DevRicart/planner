@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 
 <a class="p-2 bg-blue-500 text-white rounded-md" href="{{ route('tasks.index') }}">Voltar</a>
 
@@ -40,4 +38,5 @@
 </div>
 
 <script src="{{ asset('js/tasks.js') }}"></script>
-@endsection
+
+</x-app-layout>
