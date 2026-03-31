@@ -14,17 +14,23 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-gray-100">
-        <!-- Navbar -->
-        <nav class="bg-gray-900 text-white p-4">
-            <div class="max-w-4xl mx-auto flex justify-between">
-                <span class="font-bold text-lg">📝 Planner</span>
-            </div>
-        </nav>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            @include('layouts.navigation')
 
-        <!-- Conteúdo -->
-        <main class="max-w-4xl mx-auto mt-6">
-            @yield('content')
-        </main>
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
     </body>
 </html>
