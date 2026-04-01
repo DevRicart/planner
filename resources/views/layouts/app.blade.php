@@ -29,10 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                <div class="container flex flex-col items-center w-full">
-                    {{ $slot }}
-                </div>
-
+                {{ $slot }}
             </main>
         </div>
     </body>
