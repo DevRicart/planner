@@ -33,7 +33,6 @@
                                 </svg>
                             </button>
                         </form>
-
                     </div>
                     <div class="px-5 py-3">
                         <div class="mt-2 mb-2">
