@@ -23,7 +23,7 @@
                             @endforeach
                         </select><br><br>
                         <label for="data_limite">Data:</label><br>
-                        <input type="date" name="data_limite"><br><br>
+                        <input type="date" name="data_limite" value="{{ $task->data_limite }}"><br><br>
                         <label for="descricao">Descrição:</label><br>
                         <div class="w-64">
                             <textarea id="descricao" class="resize-none h-36" name="descricao" maxlength="100">{{ $task->descricao }}</textarea><br>

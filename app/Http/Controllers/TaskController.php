@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     public function index() {
-        $tasks = Task::all();
+        $tasks = Task::where('user_id', auth()->id())->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -19,7 +19,7 @@ class TaskController extends Controller
 
     public function store(Request $request) {
         Task::create([
-            // 'user_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'titulo' => $request->titulo,
             'prioridade' =>$request->prioridade,
             'descricao' => $request->descricao,
@@ -39,6 +39,10 @@ class TaskController extends Controller
 
     public function edit($id) {
         $task = Task::findOrFail($id);
+
+        if ($task->user_id !== auth()->id()) {
+            abort(403);
+        }
 
         return view('tasks.edit', compact('task'));
     }
