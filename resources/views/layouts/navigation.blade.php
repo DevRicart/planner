@@ -7,7 +7,6 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('tasks.index') }}">
                         <img class="w-24" src="{{ asset('images/planner-logo.png') }}">
-
                     </a>
                     <p>Planner</p>
                 </div>
