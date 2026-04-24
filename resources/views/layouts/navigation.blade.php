@@ -5,10 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('tasks.index') }}">
+                    <a class="flex items-center" href="{{ route('tasks.index') }}">
                         <img class="w-9 mr-3" src="{{ asset('images/planner-logo.png') }}">
+                        <p>Planner</p>
                     </a>
-                    <p>Planner</p>
+
                 </div>
 
                 <!-- Navigation Links -->
