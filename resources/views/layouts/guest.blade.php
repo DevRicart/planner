@@ -23,11 +23,24 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <img class="w-16" src="{{ asset('images/planner-logo.png') }}">
+                    <img class="w-16 lg:w-24" src="{{ asset('images/planner-logo.png') }}">
                 </a>
             </div>
+            @if(request()->routeIs('login'))
+                <div class="mt-4 text-center">
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">Bem-vindo de volta</h1>
+                    <p class="text-xs md:text-sm lg:text-lg">Abra seu caderninho e continue de onde parou.</p>
+                </div>
+            @endif
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            @if(request()->routeIs('register'))
+                <div class="mt-4 text-center">
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">É novo por aqui?</h1>
+                    <p class="text-xs md:text-sm lg:text-lg">Crie sua conta e comece a planejar seu caderninho.</p>
+                </div>
+            @endif
+
+            <div class="w-full lg:w-8/12 md:w-4/5 mt-6 flex justify-center">
                 {{ $slot }}
             </div>
         </div>
