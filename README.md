@@ -16,34 +16,28 @@ Planner is a web application, made to organize the daily tasks of work and perso
 
 1. Clone the project
 
-2. Copy .env.example (and point to a database)
+2. Copy the `.env.example` file and configure the database connection
 ```
 cp .env.example .env
 ```
 
-3. Install PHP dependencies
+3. Build and start the containers
 ```
-composer install
-```
-
-4. Generate encryption key
-```
-artisan key:generate
+docker compose up -d --build
 ```
 
-5. Create the tables in db and seed it
+4. Install PHP dependencies
 ```
-php artisan migrate
-php artisan db:seed
-```
-
-6. install npm dependencies
-```
-npm install
+docker compose exec app composer install
 ```
 
-7. compile the front-end archives and launch the local server
+5. Generate the application encryption key
 ```
-npm run dev
-php artisan serve
+docker compose exec app php artisan key:generate
+```
+
+6. Run migrations and seed the database
+```
+docker compose exec app php artisan migrate
+docker compose exec app php artisan db:seed
 ```
